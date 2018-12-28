@@ -24,10 +24,10 @@ export class Backend {
     init(config) {
 
         if(os.platform() == "win32") {
-	    this.config_dir = "C:\\ProgramData\\ryo";
-	    //this.config_dir = path.join(os.homedir(), "ryo");
+	    this.config_dir = "C:\\ProgramData\\TOCC";
+	    //this.config_dir = path.join(os.homedir(), "TOCC");
         } else {
-            this.config_dir = path.join(os.homedir(), ".ryo");
+            this.config_dir = path.join(os.homedir(), ".TOCC");
         }
         if (!fs.existsSync(this.config_dir)) {
             fs.mkdirSync(this.config_dir);
@@ -53,14 +53,14 @@ export class Backend {
 
             daemon: {
                 type: "local_remote",
-                remote_host: "geo.ryoblocks.com",
-                remote_port: 12211,
+                remote_host: "smartcoinpool.com",
+                remote_port: 16970,
                 p2p_bind_ip: "0.0.0.0",
-                p2p_bind_port: 12210,
+                p2p_bind_port: 16969,
                 rpc_bind_ip: "127.0.0.1",
-                rpc_bind_port: 12211,
+                rpc_bind_port: 16971,
                 zmq_rpc_bind_ip: "127.0.0.1",
-                zmq_rpc_bind_port: 12212,
+                zmq_rpc_bind_port: 16972,
                 out_peers: -1,
                 in_peers: -1,
                 limit_rate_up: -1,
@@ -69,7 +69,7 @@ export class Backend {
             },
 
             wallet: {
-                rpc_bind_port: 12214,
+                rpc_bind_port: 16973,
                 log_level: 0
             }
         }
@@ -177,7 +177,7 @@ export class Backend {
 
             case "open_explorer":
                 if(params.type == "tx") {
-                    require("electron").shell.openExternal("https://explorer.ryo-currency.com/tx/"+params.id)
+                    require("electron").shell.openExternal("https://explorer.TOCC.smartcoinpool.com/tx/"+params.id)
                 }
                 break;
 

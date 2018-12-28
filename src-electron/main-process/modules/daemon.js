@@ -18,7 +18,7 @@ export class Daemon {
         return new Promise((resolve, reject) => {
             if (process.platform === "win32") {
                 let ryod_path = path.join(__ryo_bin, "ryod.exe")
-                let ryod_version_cmd = `"${ryod_path}" --version`
+                let ryod_version_cmd = `"${TOCCd_path}" --version`
                 if (!fs.existsSync(ryod_path))
                     resolve(false)
                 child_process.exec(ryod_version_cmd, (error, stdout, stderr) => {
@@ -27,11 +27,11 @@ export class Daemon {
                     resolve(stdout)
                 })
             } else {
-                let ryod_path = path.join(__ryo_bin, "ryod")
-                let ryod_version_cmd = `"${ryod_path}" --version`
-                if (!fs.existsSync(ryod_path))
+                let ryod_path = path.join(__TOCC_bin, "TOCCd")
+                let ryod_version_cmd = `"${TOCCd_path}" --version`
+                if (!fs.existsSync(TOCCd_path))
                     resolve(false)
-                child_process.exec(ryod_version_cmd, {detached: true}, (error, stdout, stderr) => {
+                child_process.exec(TOCCd_version_cmd, {detached: true}, (error, stdout, stderr) => {
                     if(error)
                         resolve(false)
                     resolve(stdout)
@@ -100,9 +100,9 @@ export class Daemon {
             }
 
             if (process.platform === "win32") {
-                this.daemonProcess = child_process.spawn(path.join(__ryo_bin, "ryod.exe"), args)
+                this.daemonProcess = child_process.spawn(path.join(__TOCC_bin, "TOCCd.exe"), args)
             } else {
-                this.daemonProcess = child_process.spawn(path.join(__ryo_bin, "ryod"), args, {
+                this.daemonProcess = child_process.spawn(path.join(__TOCC_bin, "TOCCd"), args, {
                     detached: true
                 })
             }
